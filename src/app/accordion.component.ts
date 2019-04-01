@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
     <p>
       accordion works!
     </p>
+    <ng-content></ng-content>
   `,
   styles: []
 })
