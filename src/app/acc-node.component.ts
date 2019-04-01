@@ -1,4 +1,5 @@
 import {Component, ContentChild, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
+import {animate, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-acc-node',
@@ -6,7 +7,7 @@ import {Component, ContentChild, ElementRef, EventEmitter, Input, OnInit, Output
     <h1 (click)="swapState()">
       <ng-container *ngTemplateOutlet="titleTemplate">></ng-container>
     </h1>
-    <div class="wrapper" *ngIf="expanded">
+    <div [@wrapper] class="wrapper" *ngIf="expanded">
       <ng-content></ng-content>
     </div>
     <ng-template #default>
@@ -23,7 +24,21 @@ import {Component, ContentChild, ElementRef, EventEmitter, Input, OnInit, Output
       cursor: pointer;
     }
 
-  `]
+  `],
+  animations: [
+    trigger('wrapper', [
+      transition(':enter', [
+        style({
+          opacity: 0
+        }),
+        animate('0.5s', style({height: '*', opacity: 1}))
+      ]),
+      transition('* => *', [
+        animate('0.5s', style({opacity: 0})),
+        animate('0.2s', style({height: '0px'}))
+      ])
+    ]),
+  ]
 })
 export class AccNodeComponent implements OnInit {
   @Input() expanded = false;
