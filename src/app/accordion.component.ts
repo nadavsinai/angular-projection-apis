@@ -3,18 +3,12 @@ import {AfterContentInit, AfterViewInit, Component, ContentChild, ElementRef, On
 @Component({
   selector: 'app-accordion',
   template: `
-    <p #viewStuff>
-      accordion works!
-    </p>
-    <ng-content select="h3"></ng-content>
-    <ng-content select=".stuff"></ng-content>
-
+    
     <ng-content></ng-content>
   `,
   styles: []
 })
 export class AccordionComponent implements OnInit, AfterViewInit, AfterContentInit {
-  @ViewChild('viewStuff') viewStuff: ElementRef;
   @ContentChild('h3') projectedStuff: ElementRef;
 
   constructor() {
@@ -24,9 +18,6 @@ export class AccordionComponent implements OnInit, AfterViewInit, AfterContentIn
     console.log(this.projectedStuff);
   }
 
-  ngAfterViewInit() {
-    console.log(this.viewStuff);
-  }
 
 
 }
