@@ -9,7 +9,7 @@ import {
   QueryList,
   ViewChild
 } from '@angular/core';
-import {AccNodeComponent} from 'src/app/acc-node.component';
+import {AccNodeComponent} from './acc-node.component';
 
 @Component({
   selector: 'app-accordion',
